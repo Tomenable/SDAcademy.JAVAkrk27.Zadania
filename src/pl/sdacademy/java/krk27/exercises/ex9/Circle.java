@@ -2,6 +2,7 @@ package pl.sdacademy.java.krk27.exercises.ex9;
 
 import pl.sdacademy.java.krk27.exercises.ex10.IMovable;
 import pl.sdacademy.java.krk27.exercises.ex10.MoveDirection;
+import pl.sdacademy.java.krk27.exercises.ex11.IResizable;
 
 /*
 stwórz klasę Circle, która będzie miała konstruktor:
@@ -14,7 +15,7 @@ punktów, klasa Circle ma określać:
 • *(trudniejsze) trzy punkty na okręgu co 90 stopni od punktu podanego przy wywołaniu metody
 List<Point2D> getSlicePoints()
  */
-public class Circle implements IMovable {
+public class Circle implements IMovable, IResizable {
     private Point2D center;
     private Point2D point;
 
@@ -40,7 +41,7 @@ public class Circle implements IMovable {
     }
 
     public double getRadius() {
-        return Math.pow(center.getX() - point.getX(), 2) + Math.pow(center.getY() - point.getY(), 2);
+        return Math.sqrt(Math.pow(center.getX() - point.getX(), 2) + Math.pow(center.getY() - point.getY(), 2));
     }
     public double getPerimeter() {
         return  2 * Math.PI * getRadius();
@@ -56,4 +57,13 @@ public class Circle implements IMovable {
         point.move(moveDirection);
     }
 
+    @Override
+    public void resizeFactor(double resizeFactory) {
+
+        double xDif = (center.getX()- point.getX())*resizeFactory;
+        double yDif = (center.getY()- point.getY())*resizeFactory;
+        point.setX( center.getX()+xDif );
+        point.setY( center.getY()+yDif );
+
+    }
 }
