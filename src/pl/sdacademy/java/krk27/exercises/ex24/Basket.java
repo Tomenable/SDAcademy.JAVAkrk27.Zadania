@@ -1,7 +1,7 @@
 package pl.sdacademy.java.krk27.exercises.ex24;
 
 public class Basket {
-    private int counter;
+    private int counter =0;
     static final int SIZE = 10;
 
     public void addToBasket() {
