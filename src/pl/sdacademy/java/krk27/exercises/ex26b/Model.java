@@ -17,4 +17,6 @@ public class Model {
                 .map(car -> "Model name" + car.name + " car type: " + car.carType + ". ")
                 .forEach(System.out::println);
     }
+
+
 }
