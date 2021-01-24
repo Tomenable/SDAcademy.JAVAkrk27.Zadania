@@ -4,6 +4,7 @@ import pl.sdacademy.java.krk27.exercises.ex12.Car;
 import pl.sdacademy.java.krk27.exercises.ex12.Engine;
 import pl.sdacademy.java.krk27.exercises.ex12.Manufacturer;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -44,6 +45,29 @@ public class Main {
         carService.removaCar(car9);
         System.out.println("carService.getCarWithThreeOrMoreManufacturers() = " + carService.getCarWithThreeOrMoreManufacturers());
 
+
+        List<Car> sorterNatural = carService.getSortedCars(CarService.SortOrder.NATURAL);
+        List<Car> sorterReversed = carService.getSortedCars(CarService.SortOrder.REVERSED);
+
+        sorterNatural.stream()
+                .map(s->s.getNazwa()+" "+s.getModel())
+                .forEach(System.out::println);
+        sorterReversed.stream().map(s->s.getNazwa()+" "+s.getModel()).forEach(System.out::println);
+
+        System.out.println("Car = " + carService.isCarOnList(car));
+        System.out.println("Car9 = " + carService.isCarOnList(car9));
+
+
+        List<Car> carsByManufacturer = carService.getCarsByManufacturer(manufacturer);
+
+        System.out.println(carsByManufacturer);
+
+        List<Car> after2000 = carService.getCarsByYearOfProductionBefore(">", 2000);
+        System.out.println("after2000 = " + after2000);
+
+        List<Car> cars1995 = carService.getCarsByYearOfProductionBefore("=", 1995);
+
+        System.out.println("cars1995 = " + cars1995);
 
     }
 
