@@ -10,5 +10,12 @@ public class Main {
         System.out.println(Arrays.toString(lista.sameElements()));
 
         System.out.println(Arrays.toString(lista.topSameElements()));
+
+        System.out.println(lista.uniqueElementsList().length);
+
+        lista.deduplicationValues();
+        System.out.println(lista.uniqueElementsList().length);
+
+
     }
 }
