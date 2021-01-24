@@ -81,4 +81,16 @@ public class Car {
     public void setTypSilnika(Engine typSilnika) {
         this.typSilnika = typSilnika;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "nazwa='" + nazwa + '\'' +
+                ", model='" + model + '\'' +
+                ", cena=" + cena +
+                ", rokProdukcji=" + rokProdukcji +
+                ", listaProducentow=" + listaProducentow.size() +
+                ", typSilnika=" + typSilnika +
+                '}';
+    }
 }

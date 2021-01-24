@@ -15,6 +15,11 @@ public class CarService {
     public CarService() {
         listaSamochodow = new ArrayList<>();
     }
+
+    public CarService(List<Car> car) {
+        listaSamochodow = new ArrayList<>(car);
+    }
+
     public void addCar(Car toAdd){
         if (!listaSamochodow.contains(toAdd)) {
             listaSamochodow.add(toAdd);
@@ -36,15 +41,24 @@ public class CarService {
                 .collect(Collectors.toList());
     }
     public Car getMostExpensiveCar(){
+        return getCheapestOrMostExpensiveCar(false);
+    }
+    public Car getCheapestCar() {
+        return getCheapestOrMostExpensiveCar(true);
+    }
+
+    private Car getCheapestOrMostExpensiveCar(boolean cheapest){
         Optional<Car> car = listaSamochodow.stream()
-                .sorted(Comparator.comparing(Car::getCena, Comparator.reverseOrder()))
+                .sorted(Comparator.comparing(Car::getCena, cheapest? Comparator.naturalOrder() : Comparator.reverseOrder()))
                 .findFirst();
         return car.isPresent()? car.get() : null;
     }
-    public Car getCheapestCar() {
-        Optional<Car> car = listaSamochodow.stream()
-                .sorted(Comparator.comparing(Car::getCena))
+
+    public Car getCarWithThreeOrMoreManufacturers() {
+            var car1 = listaSamochodow.stream()
+                .filter(car -> car.getListaProducentow().size() >= 3)
                 .findFirst();
-        return car.isPresent() ? car.get() : null;
+            return car1.isPresent()? car1.get() : null;
     }
+
 }
