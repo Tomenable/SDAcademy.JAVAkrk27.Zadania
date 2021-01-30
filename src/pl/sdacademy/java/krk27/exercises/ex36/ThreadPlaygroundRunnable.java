@@ -13,6 +13,12 @@ public class ThreadPlaygroundRunnable implements Runnable{
         for (int i = 0; i < 10; i++) {
             System.out.printf( "Thread =  %s, name = %s, iteration = %d%n",
                     Thread.currentThread().getName(),name, i);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
