@@ -16,7 +16,7 @@ public class Main {
     public static <T> double partOf(T[] toAdd, Predicate<T> function) {
         double iloscSpelniajacaWarunek;
 
-        iloscSpelniajacaWarunek = Arrays.stream(toAdd).filter(s -> function.test(s)).count();
+        iloscSpelniajacaWarunek = Arrays.stream(toAdd).filter(function::test).count();
         return (iloscSpelniajacaWarunek / toAdd.length) * 100;
 
     }
