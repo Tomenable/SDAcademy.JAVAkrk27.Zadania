@@ -1,35 +1,28 @@
 package pl.sdacademy.java.krk27.exercises.ex39;
 
 import java.util.List;
+import java.util.Random;
 
 public class Sensor implements Runnable{
 
-    List<Integer> results;
+    SomeSystem system;
     private String name;
 
-    public Sensor(List<Integer> results, String name) {
-        this.results = results;
+    public Sensor(SomeSystem system, String name) {
+        this.system = system;
         this.name = name;
     }
 
     @Override
     public synchronized void run() {
         while (true){
-            List<Integer> temp = results;
+            var temp = system.getScore();
             try {
-                Thread.sleep(( long ) (Math.random()*1000) );
-                if(temp.equals(results)){
-                    System.out.println("Dodanie nowej wartości do wyników");
-                    results.add(( int ) (Math.random()*1000));
-                    results.notifyAll();
-                }else {
-                    System.out.println("Tablica wyników się zmieniła, przerwanie woperacji");
-                }
+                Thread.sleep(( long ) (Math.random()*10000) );
+                system.setScore(name, temp, new Random().nextInt());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 }

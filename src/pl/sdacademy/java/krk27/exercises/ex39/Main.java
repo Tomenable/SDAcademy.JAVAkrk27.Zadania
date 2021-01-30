@@ -6,15 +6,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Integer> wyniki = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            wyniki.add(i);
-        }
+        var system = new SomeSystem(10);
 
 
         for (int i = 0; i < 5; i++) {
-            new Thread(new Monitor(wyniki,"Monitor - "+i)).start();
-            new Thread(new Sensor(wyniki,"Sensor - "+i)).start();
+            new Thread(new Monitor(system,"Monitor - "+i)).start();
+            new Thread(new Sensor(system,"Sensor - "+i)).start();
         }
 
 

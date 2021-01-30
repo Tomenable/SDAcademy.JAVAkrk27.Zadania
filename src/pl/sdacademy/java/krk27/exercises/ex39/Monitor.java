@@ -4,24 +4,33 @@ import java.util.List;
 
 public class Monitor implements Runnable{
 
-    List<Integer> results;
+    SomeSystem system;
     private String nameOfMonitor;
 
-    public Monitor(List<Integer> results, String nameOfMonitor) {
-        this.results = results;
+    public Monitor(SomeSystem system, String nameOfMonitor) {
+        this.system = system;
         this.nameOfMonitor = nameOfMonitor;
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         while (true) {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println("results = " + results);
-            try {
-                results.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            system.waitForNewScore();
+            System.out.println(nameOfMonitor + " results = " + system.getScore());
         }
+
+        /*var cache = system.getScore();
+        while (true) {
+            while (cache == system.getScore())
+            {
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            cache = system.getScore();
+            System.out.println(nameOfMonitor + " results = " + cache);
+        }*/
     }
 }
