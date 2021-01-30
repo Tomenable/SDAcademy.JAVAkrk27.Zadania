@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import pl.sdacademy.java.krk27.exercises.ex18.Computer;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,7 +40,6 @@ public class Main {
         }
         List<Computer> lista = gson.fromJson(json, new TypeToken<List<Computer>>() {
         }.getType());
-
 
     }
 }
